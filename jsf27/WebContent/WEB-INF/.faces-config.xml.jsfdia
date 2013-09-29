@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::0" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="logout::#public#paginaLogin.xhtml"
+    NAME="output" PATH="/public/paginaLogin.xhtml"
+    TARGET="rules:#public#paginaLogin.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#public#paginaLogin.xhtml"
+  PATH="/public/paginaLogin.xhtml" SHAPE="240,177,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#public#paginaLogin.xhtml:0" NAME="item"
+   PATH="/public/paginaLogin.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="permitido::#protected#paginaInicial.xhtml"
+    NAME="output" PATH="/protected/paginaInicial.xhtml"
+    TARGET="rules:#protected#paginaInicial.xhtml" TITLE="permitido" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#protected#paginaInicial.xhtml"
+  PATH="/protected/paginaInicial.xhtml" SHAPE="448,129,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>
