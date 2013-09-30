@@ -101,10 +101,16 @@ public class QuestaoMB extends AbstractMB{
 		try {
 			questaoDAO.excluir(questaoSelecionada);
 		} catch (Exception e) {
+			displayErrorMessageToUser("Ocorreu um erro favor entrar em contato com o suporte!");
 			e.printStackTrace();
 		}
 	}
-
+	
+	public void limparQuestao(){
+		if(questaoSelecionada != null){
+			questaoSelecionada = new Questao();
+		}
+	}
 	public Questao getQuestao() {
 		return questao;
 	}
