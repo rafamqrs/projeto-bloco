@@ -91,6 +91,9 @@
 				 <p:dialog header="Editar Questões" widgetVar="questaoDialog" resizable="false" id="carDlg"  
 	                showEffect="fade" hideEffect="explode" modal="true">  			
 							<h:panelGrid id="display" columns="2" cellpadding="4">
+								<h:outputText value="" />
+								<h:inputHidden value="#{questaoMB.questaoSelecionada.idQuestao}"/>
+								
 								<h:outputText value="#{bundle.descricaoQuestao}" />
 								<p:inplace id="descricao" editor="true">
 									<h:inputText value="#{questaoMB.questaoSelecionada.descricao}" />			
@@ -111,8 +114,9 @@
 								<p:commandButton value="#{bundle.atualizar}"
 									icon="ui-icon-plus"
 									action="#{questaoMB.alterar()}"
-									update=":listQuestao:display" 
-									onsuccess="questaoDialog.hide()"/>
+									update=":listQuestao" 
+									oncomplete="questaoDialog.hide()"/>
+							
 							</h:panelGrid>
 				</p:dialog>
 			</h:form>

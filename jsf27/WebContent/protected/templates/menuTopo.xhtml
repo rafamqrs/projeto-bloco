@@ -12,7 +12,7 @@
 	<h:form>
 	<p:tabMenu rendered="true" widgetVar="#{menuMB.activeIndex}" >
 	    <p:menuitem value="Página Inicial" actionListener="#{menuMB.paginaInicial()}" icon="ui-icon-home"/>
-	    <p:menuitem value="Administrador" action="#{menuMB.paginaAdmin()}" icon="ui-icon-person" disabled="!#{loginMB.admin}"/>
+	    <p:menuitem value="Administrador" action="#{menuMB.paginaAdmin()}" icon="ui-icon-person" disabled="#{loginMB.admin}"/>
 	    <p:menuitem value="Aluno" url="#{menuMB.paginaAluno()}" icon="ui-icon-note"/>
 	    <p:menuitem value="#{loginMB.usuario.nome}" title="Aluno:"/>
 	    <p:menuitem value="Sair" action="#{loginMB.logout()}" icon="ui-icon-closethick"/>
