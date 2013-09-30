@@ -24,31 +24,30 @@
 							<p:inputTextarea value="#{questaoMB.descricao}"
 								styleClass="form-control" />
 							<br />
-						</div>
+						<br/>
 						<h:outputText value="#{bundle.questaoAtiva}" />
 						<p:selectOneRadio id="ativo" value="#{questaoMB.ativo}">
 							<f:selectItem itemLabel="#{bundle.ativo}" itemValue="true" />
 							<f:selectItem itemLabel="#{bundle.inativo}" itemValue="false" />
 						</p:selectOneRadio>
-						<br />
-						<br />
+						<h:outputText value="#{bundle.curso}" /><br/>
 						<p:selectOneMenu value="#{questaoMB.idModulo}">
 							<f:selectItem itemLabel="--Selecione um modulo--" itemValue="-1" />
 							<f:selectItems value="#{questaoMB.listaModulos}" />
 						</p:selectOneMenu>
 						<br />
-						<br />
 						<h:commandButton action="#{questaoMB.cadastrarQuestao()}"
 							value="#{bundle.cadastraQuestao}" type="submit"
 							styleClass="btn btn-large btn-primary" />
+						</div>
 					</h:form>
 					
 					
 					<h:form id="listQuestao">
 						<p:dataTable id="dataTable" var="questoes"
-							value="#{questaoMB.listaQuestoes}" paginator="true" rows="10"
+							value="#{questaoMB.listaQuestoes}" paginator="true" rows="5"
 							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-							rowsPerPageTemplate="5,10,15"
+							rowsPerPageTemplate="5,10,20"
 							styleClass="table table-striped table-bordered">
 							<f:facet name="header">
 								#{bundle.listaQuestoes}
@@ -83,26 +82,37 @@
                  			</p:column>
 							<p:column>
 								<p:commandButton id="viewButton" value="Editar"
-									icon="ui-icon-search" update=":listQuestao:display"
-									oncomplete="questaoDialog.show()">
+									icon="ui-icon-pencil" update=":listQuestao:display"
+									oncomplete="questaoDialog.show()" >
 									<f:setPropertyActionListener target="#{questaoMB.questaoSelecionada}" value="#{questoes}"/>
 								</p:commandButton>
 							</p:column>
 				</p:dataTable>
-
 				 <p:dialog header="Editar Questões" widgetVar="questaoDialog" resizable="false" id="carDlg"  
 	                showEffect="fade" hideEffect="explode" modal="true">  			
 							<h:panelGrid id="display" columns="2" cellpadding="4">
 								<h:outputText value="#{bundle.descricaoQuestao}" />
-								<p:inplace id="descricao">
-									<h:outputText value="#{questaoMB.questaoSelecionada.descricao}"/>	
+								<p:inplace id="descricao" editor="true">
 									<h:inputText value="#{questaoMB.questaoSelecionada.descricao}" />			
 								</p:inplace>
-								<h:outputText value="#{bundle.descricaoQuestao}" />
-								<p:inplace id="teste" editor="true">
-									<p:inputText value="#{questaoMB.questaoSelecionada.idQuestao}" label="text"/>				
-								</p:inplace>
 
+								<h:outputText value="#{bundle.questaoAtiva}" />
+								<p:selectOneRadio id="selecionadaAtivo" value="#{questaoMB.questaoSelecionada.ativo}">
+									<f:selectItem itemLabel="#{bundle.ativo}" itemValue="true" />
+									<f:selectItem itemLabel="#{bundle.inativo}" itemValue="false" />
+								</p:selectOneRadio>
+								
+								<h:outputText value="#{bundle.curso}" /><br/>
+								<p:selectOneMenu value="#{questaoMB.idModulo}">
+									<f:selectItem itemLabel="--Selecione um modulo--" itemValue="-1" />
+									<f:selectItems value="#{questaoMB.listaModulos}" />
+								</p:selectOneMenu>
+
+								<p:commandButton value="#{bundle.atualizar}"
+									icon="ui-icon-plus"
+									action="#{questaoMB.alterar()}"
+									update=":listQuestao:display" 
+									onsuccess="questaoDialog.hide()"/>
 							</h:panelGrid>
 				</p:dialog>
 			</h:form>

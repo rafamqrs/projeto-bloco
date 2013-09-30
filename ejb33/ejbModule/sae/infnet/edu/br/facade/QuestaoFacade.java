@@ -34,4 +34,12 @@ public class QuestaoFacade {
 		return questaoDAO.listarQuestoes();
 	}
 	
+	public void alterar(Questao questao){
+		questaoDAO.alterar(questao);
+	}
+
+	public void excluir(Questao questaoSelecionada) {
+		questaoDAO.excluir(questaoSelecionada);
+	}
+	
 }

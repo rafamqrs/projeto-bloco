@@ -86,6 +86,24 @@ public class QuestaoMB extends AbstractMB{
 		}
 		return "cadQuestao";
 	}
+	
+	public void alterar(){
+		try {
+			Modulo modulo = questaoDAO.listaModulo(idModulo);
+			questaoSelecionada.setCurso(modulo);
+			questaoDAO.alterar(questaoSelecionada);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void remover(){
+		try {
+			questaoDAO.excluir(questaoSelecionada);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public Questao getQuestao() {
 		return questao;

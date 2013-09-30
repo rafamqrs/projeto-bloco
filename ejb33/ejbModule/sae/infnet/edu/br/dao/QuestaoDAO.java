@@ -24,4 +24,13 @@ public class QuestaoDAO {
 		List<Questao> results = createQuery.getResultList();
 		return results;
 	}
+	
+	public void alterar(Questao questao){
+		em.merge(questao);
+	}
+
+	public void excluir(Questao questaoSelecionada) {
+		Questao reference = em.getReference(Questao.class, questaoSelecionada.getIdQuestao());
+		em.remove(reference);
+	}
 }
