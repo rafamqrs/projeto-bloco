@@ -46,6 +46,14 @@
 	</navigation-rule>
 
 	<navigation-rule>
+		<navigation-case>
+			<from-outcome>cadAvaliacao</from-outcome>
+			<to-view-id>/protected/admin/cadAvaliacao.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
 		<from-view-id>/public/paginaLogin.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>permitido</from-outcome>

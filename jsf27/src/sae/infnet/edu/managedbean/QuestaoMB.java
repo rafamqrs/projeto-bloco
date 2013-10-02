@@ -73,13 +73,15 @@ public class QuestaoMB extends AbstractMB{
 	
 	public String cadastrarQuestao(){
 		try {
-			Modulo modulo = questaoDAO.listaModulo(idModulo);
-			questao.setCurso(modulo);
-			questao.setDescricao(descricao);
-			questao.setAtivo(ativo);
-			questaoDAO.cadastrar(questao);
-			message = "Questão Cadastrada com Sucesso!";
-			displayInfoMessageToUser(message);
+			if (!validarCampos()) {
+				Modulo modulo = questaoDAO.listaModulo(idModulo);
+				questao.setCurso(modulo);
+				questao.setDescricao(descricao);
+				questao.setAtivo(ativo);
+				questaoDAO.cadastrar(questao);
+				message = "Questão Cadastrada com Sucesso!";
+				displayInfoMessageToUser(message);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
@@ -89,6 +91,7 @@ public class QuestaoMB extends AbstractMB{
 	
 	public void alterar(){
 		try {
+			System.out.println(questaoSelecionada.getIdQuestao());
 			Modulo modulo = questaoDAO.listaModulo(idModulo);
 			questaoSelecionada.setCurso(modulo);
 			questaoDAO.alterar(questaoSelecionada);
@@ -104,6 +107,15 @@ public class QuestaoMB extends AbstractMB{
 			displayErrorMessageToUser("Ocorreu um erro favor entrar em contato com o suporte!");
 			e.printStackTrace();
 		}
+	}
+	
+	public boolean validarCampos(){
+		boolean erro = false;
+		if (descricao.trim().isEmpty() || idModulo < -1) {
+			erro = true;
+			displayErrorMessageToUser("Os campos são obrigatórios!");
+		}
+		return erro;
 	}
 	
 	public void limparQuestao(){

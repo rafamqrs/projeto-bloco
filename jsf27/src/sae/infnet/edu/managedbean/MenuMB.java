@@ -16,6 +16,11 @@ public class MenuMB {
 	public String cadQuestao(){
 		return "cadQuestao";
 	}
+
+	public String cadAvaliacao(){
+		return "cadAvaliacao";
+	}
+	
 	public String paginaInicial(){
 		this.activeIndex = 0;
 		return "permitido";

@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Modulo {
@@ -12,7 +13,7 @@ public class Modulo {
 	@Column(name="idModulo")
 	private Integer idModulo;
 	private String nome;
-	
+
 	public String getNome() {
 		return nome;
 	}

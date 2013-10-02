@@ -10,14 +10,15 @@
 </h:head>
 <h:body>
 	<ui:composition template="/protected/templates/master.xhtml">
-		<h:form>
-			<p:selectCheckboxMenu label="Questões" filter="true"
-									filterText="Filter" filterMatchMode="startsWith"  >
+		<ui:define name="divMain">
+			<h:form>
+				<p:selectCheckboxMenu value="#{avaliacaoMB.listaQuestoes}"
+									  label="Selecionar as Questões" filterText="Filter" filter="true" filterMatchMode="startsWith" panelStyle="width:220px">
+									  <f:selectItems value="#{avaliacaoMB.questoes}"/>
+				</p:selectCheckboxMenu>
 			
-			
-			</p:selectCheckboxMenu>
-		
-		</h:form>
+			</h:form>
+		</ui:define>
 	</ui:composition>
 </h:body>
 </html>

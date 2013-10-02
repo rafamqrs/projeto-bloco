@@ -57,35 +57,35 @@
 								<f:facet name="header">
 									<h:outputText value="idQuestao" />
 								</f:facet>
-                 				#{questoes.idQuestao}
+                 				<h:outputText value="#{questoes.idQuestao}" />
                  			</p:column>
 
 							<p:column>
 								<f:facet name="header">
 									<h:outputText value="Descrição" />
 								</f:facet>
-                 				#{questoes.descricao}
+								<h:outputText value="#{questoes.descricao}" />
                  			</p:column>
 
 							<p:column>
 								<f:facet name="header">
 									<h:outputText value="Ativo" />
 								</f:facet>
-                 				#{questoes.ativo}
+								<h:outputText value="#{questoes.ativo}" />
                  			</p:column>
 
 							<p:column>
 								<f:facet name="header">
 									<h:outputText value="Modulo" />
 								</f:facet>
-                 				#{questoes.curso.nome}
+                 				<h:outputText value="#{questoes.curso.nome}" />
                  			</p:column>
 							<p:column>
 								<f:facet name="header">
 									<h:outputText value="Editar" />
 								</f:facet>
 								<p:commandButton id="viewButton" value="Editar"
-									icon="ui-icon-pencil" update=":listQuestao:display"
+									icon="ui-icon-pencil" update=":listQuestao:editarDisplay"
 									oncomplete="questaoDialog.show()" >
 									<f:setPropertyActionListener target="#{questaoMB.questaoSelecionada}" value="#{questoes}"/>
 								</p:commandButton>
@@ -95,17 +95,18 @@
 									<h:outputText value="Excluir" />
 								</f:facet>
 								<p:commandButton id="delButton" value="Remover"
-									icon="ui-icon-trash" update=":listQuestao:delDisplay"
-									oncomplete="delQuestaoDialog.show()" >
+									icon="ui-icon-trash" update=":listQuestao:removerDisplay"
+									oncomplete="delQuestaoDialog.show()">
 									<f:setPropertyActionListener target="#{questaoMB.questaoSelecionada}" value="#{questoes}"/>
 								</p:commandButton>
 							</p:column>
 				</p:dataTable>
-				 <p:dialog header="Editar Questões" widgetVar="questaoDialog" resizable="false" id="carDlg"  
+				 <p:dialog header="Editar Questões" widgetVar="questaoDialog" resizable="false" id="editarQuestaoDlg"  
 	                showEffect="fade" hideEffect="explode" modal="true">  			
-							<h:panelGrid id="delDisplay" columns="2" cellpadding="4">
-								<h:outputText value="" />
-								<h:inputHidden value="#{questaoMB.questaoSelecionada.idQuestao}"/>
+							<h:panelGrid id="editarDisplay" columns="2" cellpadding="4">
+
+								<h:outputText value="#{bundle.idQuestao}" />
+			   					<h:inputText disabled="true" value="#{questaoMB.questaoSelecionada.idQuestao}" />
 								
 								<h:outputText value="#{bundle.descricaoQuestao}" />
 								<h:inputText value="#{questaoMB.questaoSelecionada.descricao}" />			
@@ -115,7 +116,7 @@
 									<f:selectItem itemLabel="#{bundle.ativo}" itemValue="true" />
 									<f:selectItem itemLabel="#{bundle.inativo}" itemValue="false" />
 								</p:selectOneRadio>
-								
+
 								<h:outputText value="#{bundle.curso}" /><br/>
 								<p:selectOneMenu value="#{questaoMB.idModulo}">
 									<f:selectItem itemLabel="--Selecione um modulo--" itemValue="-1" />
@@ -133,15 +134,19 @@
 
 			   <p:dialog header="Excluir Questão" widgetVar="delQuestaoDialog" resizable="false" id="delQuestaoDlg"  
 	                showEffect="fade" hideEffect="explode" modal="true">
-			   					<h:panelGrid id="display" columns="2" cellpadding="1">
+			   				<h:panelGrid id="removerDisplay" columns="2" cellpadding="1">
 			   					<h:outputText value="#{bundle.alertadelete}" />
 			   					<br/>
+			   					<h:inputHidden value="#{questaoMB.questaoSelecionada.idQuestao}" />
+			   					<br/>
 								<p:commandButton value="#{bundle.sim}"
-									icon="ui-icon-trash"
+									styleClass="btn btn-small btn-primary"
 									action="#{questaoMB.remover()}"
 									update=":listQuestao" 
 									oncomplete="delQuestaoDialog.hide()"/>
-								<p:commandButton icon="ui-icon-circle-close" action="#{questaoMB.limparQuestao()}" oncomplete="delQuestaoDialog.hide()"/>	
+								<p:commandButton action="#{questaoMB.limparQuestao()}"
+									styleClass="btn btn-small btn-primary" value="#{bundle.nao}"
+									oncomplete="delQuestaoDialog.hide()" />
 							</h:panelGrid>
 			   </p:dialog>
 			</h:form>
