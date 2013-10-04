@@ -1,39 +1,41 @@
 package sae.infnet.edu.managedbean;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+
+import org.primefaces.model.DualListModel;
 
 import sae.infnet.edu.br.facade.QuestaoFacade;
 import sae.infnet.edu.modelo.Questao;
 
 @ManagedBean
+@ViewScoped
 public class AvaliacaoMB {
-	
-	private List<Questao> listaQuestoes = new ArrayList<Questao>();
-	private HashMap<String, Integer> questoes; 
+	private String objetivo;
+	private Date dataInicio;
+	private Date dataTermino;
+	private List<Questao> listaQuestoes;
+	private List<Questao> listasQuestoesSeleconadas;
 	@EJB
 	private QuestaoFacade facade;
-	
+	private boolean ativo;
+	private DualListModel<Questao> questoes;  
+
 	public AvaliacaoMB() {
-		questoes = new HashMap<String, Integer>();
-		lista();
+		listaQuestoes = new ArrayList<Questao>();
+		listasQuestoesSeleconadas = new ArrayList<Questao>();
+		listaQuestoes = facade.listarQuestoes();
+		questoes = new DualListModel<Questao>( listaQuestoes, listasQuestoesSeleconadas);
+
 	}
 
-	public HashMap<String, Integer> lista(){
-		for(Questao q : getListaQuestoes()){
-			questoes.put(q.getDescricao(), q.getIdQuestao());
-		}
-		return questoes;
-	}
-	
 	public List<Questao> getListaQuestoes() {
-		if(listaQuestoes.isEmpty()){
-			listaQuestoes = facade.listarQuestoes();
-		}
 		return listaQuestoes;
 	}
 
@@ -41,7 +43,51 @@ public class AvaliacaoMB {
 		this.listaQuestoes = listaQuestoes;
 	}
 
-	public HashMap<String, Integer> getQuestoes() {
+	public String getObjetivo() {
+		return objetivo;
+	}
+
+	public void setObjetivo(String objetivo) {
+		this.objetivo = objetivo;
+	}
+
+	public Date getDataInicio() {
+		return dataInicio;
+	}
+
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
+	public Date getDataTermino() {
+		return dataTermino;
+	}
+
+	public void setDataTermino(Date dataTermino) {
+		this.dataTermino = dataTermino;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+
+	public DualListModel<Questao> getPlayers() {
 		return questoes;
+	}
+
+	public void setPlayers(DualListModel<Questao> players) {
+		this.questoes = players;
+	}
+
+	public List<Questao> getListas() {
+		return listasQuestoesSeleconadas;
+	}
+
+	public void setListas(List<Questao> listas) {
+		this.listasQuestoesSeleconadas = listas;
 	}
 }
