@@ -25,6 +25,11 @@ public class QuestaoDAO {
 		return results;
 	}
 	
+	public List<Questao> listarQuestoesAtivas(){
+		TypedQuery<Questao> createQuery = em.createQuery("SELECT q FROM Questao q WHERE q.ativo = true", Questao.class);
+		List<Questao> results = createQuery.getResultList();
+		return results;
+	}
 	public void alterar(Questao questao){
 		em.merge(questao);
 	}
@@ -32,5 +37,10 @@ public class QuestaoDAO {
 	public void excluir(Questao questaoSelecionada) {
 		Questao reference = em.getReference(Questao.class, questaoSelecionada.getIdQuestao());
 		em.remove(reference);
+	}
+	
+	public Questao listarPorId(Questao questao){
+		Questao q = em.getReference(Questao.class, questao.getIdQuestao());
+		return q;
 	}
 }

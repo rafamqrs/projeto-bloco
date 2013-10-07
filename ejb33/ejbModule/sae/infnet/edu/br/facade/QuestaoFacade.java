@@ -33,6 +33,10 @@ public class QuestaoFacade {
 	public List<Questao> listarQuestoes(){
 		return questaoDAO.listarQuestoes();
 	}
+
+	public List<Questao> listarQuestoesAtivas(){
+		return questaoDAO.listarQuestoesAtivas();
+	}
 	
 	public void alterar(Questao questao){
 		questaoDAO.alterar(questao);
@@ -40,6 +44,10 @@ public class QuestaoFacade {
 
 	public void excluir(Questao questaoSelecionada) {
 		questaoDAO.excluir(questaoSelecionada);
+	}
+	
+	public Questao listarPorId(Questao questao){
+		return questaoDAO.listarPorId(questao);
 	}
 	
 }

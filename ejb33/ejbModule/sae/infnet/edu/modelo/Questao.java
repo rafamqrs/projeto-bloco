@@ -20,6 +20,22 @@ public class Questao {
 	private Modulo curso;
 	private boolean ativo;
 	
+	public Questao() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Questao(Integer idQuestao, String descricao, Modulo curso,
+			boolean ativo) {
+		super();
+		this.idQuestao = idQuestao;
+		this.descricao = descricao;
+		this.curso = curso;
+		this.ativo = ativo;
+	}
+
+
+
+
 	public Integer getIdQuestao() {
 		return idQuestao;
 	}

@@ -10,7 +10,6 @@ public class MenuMB {
 	private int activeIndex = 0;
 	
 	public MenuMB() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public String cadQuestao(){
@@ -22,17 +21,17 @@ public class MenuMB {
 	}
 	
 	public String paginaInicial(){
-		this.activeIndex = 0;
-		return "permitido";
+		setActiveIndex(0);
+		return "home";
 	}
 	
 	public String paginaAdmin(){
-		this.activeIndex = 1;
+		setActiveIndex(1);
 		return "admin";
 	}
 
 	public String paginaAluno(){
-		this.activeIndex = 2;
+		setActiveIndex(2);
 		return "aluno";
 	}
 	

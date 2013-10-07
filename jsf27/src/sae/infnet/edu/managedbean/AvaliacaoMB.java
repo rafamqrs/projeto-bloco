@@ -7,7 +7,9 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.inject.Named;
 
 import org.primefaces.model.DualListModel;
 
@@ -15,32 +17,39 @@ import sae.infnet.edu.br.facade.QuestaoFacade;
 import sae.infnet.edu.modelo.Questao;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class AvaliacaoMB {
+	private List<Questao> questoes = new ArrayList<Questao>();
+	private List<Questao> selecionadas;
 	private String objetivo;
-	private Date dataInicio;
-	private Date dataTermino;
-	private List<Questao> listaQuestoes;
-	private List<Questao> listasQuestoesSeleconadas;
+	private boolean situacao;
 	@EJB
-	private QuestaoFacade facade;
-	private boolean ativo;
-	private DualListModel<Questao> questoes;  
-
+	private QuestaoFacade questaoFacade;
+	private DualListModel<Questao> cores;
+	
 	public AvaliacaoMB() {
-		listaQuestoes = new ArrayList<Questao>();
-		listasQuestoesSeleconadas = new ArrayList<Questao>();
-		listaQuestoes = facade.listarQuestoes();
-		questoes = new DualListModel<Questao>( listaQuestoes, listasQuestoesSeleconadas);
-
 	}
 
-	public List<Questao> getListaQuestoes() {
-		return listaQuestoes;
+	public void listarQuestoes(){
+		questoes = questaoFacade.listarQuestoesAtivas();
+		selecionadas = new ArrayList<Questao>();
+		cores = new DualListModel<Questao>(questoes, selecionadas);
+	}
+	
+	public List<Questao> getQuestoes() {
+		return questoes;
 	}
 
-	public void setListaQuestoes(List<Questao> listaQuestoes) {
-		this.listaQuestoes = listaQuestoes;
+	public void setQuestoes(List<Questao> questoes) {
+		this.questoes = questoes;
+	}
+
+	public List<Questao> getSelecionadas() {
+		return selecionadas;
+	}
+
+	public void setSelecionadas(List<Questao> selecionadas) {
+		this.selecionadas = selecionadas;
 	}
 
 	public String getObjetivo() {
@@ -51,43 +60,30 @@ public class AvaliacaoMB {
 		this.objetivo = objetivo;
 	}
 
-	public Date getDataInicio() {
-		return dataInicio;
+	public boolean isSituacao() {
+		return situacao;
 	}
 
-	public void setDataInicio(Date dataInicio) {
-		this.dataInicio = dataInicio;
+	public void setSituacao(boolean situacao) {
+		this.situacao = situacao;
 	}
 
-	public Date getDataTermino() {
-		return dataTermino;
+	public QuestaoFacade getQuestaoFacade() {
+		return questaoFacade;
 	}
 
-	public void setDataTermino(Date dataTermino) {
-		this.dataTermino = dataTermino;
+	public void setQuestaoFacade(QuestaoFacade questaoFacade) {
+		this.questaoFacade = questaoFacade;
 	}
 
-	public boolean isAtivo() {
-		return ativo;
+	public DualListModel<Questao> getCores() {
+		if(questoes.isEmpty()){
+			listarQuestoes();
+		}
+		return cores;
 	}
 
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
-	}
-
-	public DualListModel<Questao> getPlayers() {
-		return questoes;
-	}
-
-	public void setPlayers(DualListModel<Questao> players) {
-		this.questoes = players;
-	}
-
-	public List<Questao> getListas() {
-		return listasQuestoesSeleconadas;
-	}
-
-	public void setListas(List<Questao> listas) {
-		this.listasQuestoesSeleconadas = listas;
+	public void setCores(DualListModel<Questao> cores) {
+		this.cores = cores;
 	}
 }
