@@ -10,13 +10,34 @@
 </h:head>
 <h:body>
 	<h:form>
-	<p:tabMenu rendered="true" widgetVar="#{menuMB.activeIndex}" >
-	    <p:menuitem value="Página Inicial" actionListener="#{menuMB.paginaInicial()}" icon="ui-icon-home"/>
-	    <p:menuitem value="Administrador" action="#{menuMB.paginaAdmin()}" icon="ui-icon-person" disabled="#{loginMB.admin}"/>
-	    <p:menuitem value="Aluno" url="#{menuMB.paginaAluno()}" icon="ui-icon-note"/>
-	    <p:menuitem value="#{loginMB.usuario.nome}" title="Aluno:"/>
-	    <p:menuitem value="Sair" action="#{loginMB.logout()}" icon="ui-icon-closethick"/>
-	</p:tabMenu>
+		<p:megaMenu autoDisplay="false"> 
+			<p:submenu label="#{bundle.paginaInicial}" icon="ui-icon-home"/>
+		 	<p:submenu label="Administrador" icon="ui-icon-person">
+			 	<p:column>
+			 		<p:submenu label="#{bundle.questoes}">
+					    <p:menuitem value="#{bundle.manterQuestoes}" action="#{menuMB.cadQuestao()}" icon="ui-icon-comment" />
+			 		</p:submenu>
+			 		<p:submenu label="#{bundle.avaliacoes}">
+					    <p:menuitem value="#{bundle.manterAvaliacoes}" action="#{menuMB.cadAvaliacao()}" icon="ui-icon-comment"/>
+			 		</p:submenu>
+			 	</p:column>
+		 	</p:submenu>
+		 	<p:submenu label="Aluno" icon="ui-icon-person">
+			 	<p:column>
+			 		<p:submenu label="Responder Avaliação">
+					    <p:menuitem value="Avaliação" action="#" icon="ui-icon-comment" />
+			 		</p:submenu>
+			 	</p:column>
+		 	</p:submenu>
+		 	<p:submenu label="#{loginMB.usuario.nome}" icon="ui-icon-person">
+			 	<p:column>
+			 		<p:submenu>
+					    <p:menuitem value="#{bundle.logOut}" action="#{loginMB.logout()}" icon="ui-icon-power" />
+					    <p:menuitem value="#{bundle.alterarSenha}" action="#{loginMB.logout()}" icon="ui-icon-pencil" />
+					</p:submenu>
+			 	</p:column>
+		 	</p:submenu>
+		</p:megaMenu>
 	</h:form>
 </h:body>
 </html>

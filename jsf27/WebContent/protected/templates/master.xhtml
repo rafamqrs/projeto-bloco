@@ -18,16 +18,15 @@
 
 <h:body>
 	<f:view contentType="text/html; charset=UTF-8" encoding="UTF-8" >
-		<div id="divTop" style="vertical-align: middle;">
-			<ui:insert name="divTop">
-				<ui:include src="menuTopo.xhtml" />
-			</ui:insert>
-		</div>
-		<div id="divMain">
-			<p:growl/>	
-			<ui:insert name="divMain" />
-		</div>
-		
+			<div id="divTop" style="vertical-align: middle;">
+				<ui:insert name="divTop">
+					<ui:include src="menuTopo.xhtml" />
+				</ui:insert>
+			</div>
+			<div id="divMain">
+				<p:growl/>	
+					<ui:insert name="divMain" />
+			</div>
 		<h:outputScript library="javascript" name="jscodes.js" />
 	</f:view>
 </h:body>
