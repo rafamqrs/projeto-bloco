@@ -804,3 +804,33 @@ font-size: 8pt;
 	color: #3366CC;
 	font-size: 8pt;
 }
+#roleEntryForm:resourceItem tr td ul {
+    height:500px;
+}
+
+.ui-picklist .ui-picklist-list {
+    height: 200px;
+    list-style-type: none;
+    margin: 0;
+    overflow: auto;
+    padding: 0;
+    width: 200px;
+}
+.ui-corner-all {
+    border-radius: 3px 3px 3px 3px;
+}
+.ui-widget-content {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #A8A8A8;
+    color: #4F4F4F;
+}
+ul {
+}
+
+.ui-widget {
+    font-size: 98% !important;
+}
+.ui-widget {
+    font-family: Arial,sans-serif;
+    font-size: 1.1em;
+}

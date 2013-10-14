@@ -30,8 +30,10 @@
 							<f:selectItems value="#{avaliacaoMB.listaModulos}" />
 						</p:selectOneMenu>
     					<br/><br/>
-					    <p:pickList value="#{avaliacaoMB.cores}" var="cor" iconOnly="true" itemLabel="#{cor.descricao}" itemValue="#{cor}" showSourceControls="true" showTargetControls="true" showCheckbox="true"  
-                   					showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains">
+					    <p:pickList value="#{avaliacaoMB.cores}" var="cor" iconOnly="true" itemLabel="#{cor.descricao}" 
+					    			itemValue="#{cor}" showSourceControls="true" showTargetControls="true" showCheckbox="true"  
+                   					showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains"
+                   					style=".ui-picklist .ui-picklist-list { height: 300px; margin: 0; overflow: auto; padding: 0; }">
 					        <f:facet name="sourceCaption">Questoes</f:facet>
 					        <f:facet name="targetCaption">Selecionadas</f:facet>
 					    </p:pickList>
