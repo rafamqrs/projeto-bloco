@@ -8,7 +8,6 @@
 <h:head>
 	<title>Cadastro de Questões</title>
 </h:head>
-<h:body>
 	<ui:composition template="/protected/templates/master.xhtml">
 		<ui:define name="divMain">
 			<div class="container master-container">
@@ -19,18 +18,18 @@
 							<h3>
 								<strong>#{bundle.cadastroDeQuestoes}</strong>
 							</h3>
-							<h:outputText value="#{bundle.descricaoQuestao}" />
+							<h:outputText value="#{bundle.descricaoQuestao}" styleClass="labelPequeno"/>
 							<br />
 							<p:inputTextarea value="#{questaoMB.descricao}"
 								styleClass="form-control" />
 							<br />
 						<br/>
-						<h:outputText value="#{bundle.questaoAtiva}" />
+						<h:outputText value="#{bundle.questaoAtiva}" styleClass="labelPequeno"/>
 						<p:selectOneRadio id="ativo" value="#{questaoMB.ativo}">
 							<f:selectItem itemLabel="#{bundle.ativo}" itemValue="true" />
 							<f:selectItem itemLabel="#{bundle.inativo}" itemValue="false" />
 						</p:selectOneRadio>
-						<h:outputText value="#{bundle.curso}" /><br/>
+						<h:outputText value="#{bundle.curso}" styleClass="labelPequeno"/><br/>
 						<p:selectOneMenu value="#{questaoMB.idModulo}">
 							<f:selectItem itemLabel="--Selecione um modulo--" itemValue="-1" />
 							<f:selectItems value="#{questaoMB.listaModulos}" />
@@ -154,5 +153,4 @@
 			</div>
 		</ui:define>
 	</ui:composition>
-</h:body>
 </html>

@@ -57,9 +57,10 @@
     <h3 class="form-signin-heading">Sistema de Avaliação:</h3>
             <h:panelGrid columns="2">  
                 <h:outputText value="Usuário : "/>  
-                <h:inputText id="username" label="matricula" value="#{loginMB.username}" styleClass="input-block-level"/>  
+                <h:inputText id="username" label="matricula" value="#{loginMB.username}" styleClass="input-block-level" 
+                			 required="true"/>  
                 <h:outputText value="Senha : "/>  
-                <h:inputSecret id="password" value="#{loginMB.password}" styleClass="input-block-level"/>  
+                <h:inputSecret id="password" label="senha" value="#{loginMB.password}" styleClass="input-block-level" required="true"/>  
   				
                 <h:commandButton value="#{bundle.acessar}" action="#{loginMB.login}"  
                     type="submit" styleClass="btn btn-large btn-primary"/>  

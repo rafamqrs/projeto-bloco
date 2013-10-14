@@ -51,7 +51,6 @@ public class LoginMB extends AbstractMB {
 			return null;
 
 		} catch (ServletException e) {
-			displayErrorMessageToUser("Matricula ou Senha incorretos;");
 			System.out.println(e.getMessage());
 			return "failure";
 		}

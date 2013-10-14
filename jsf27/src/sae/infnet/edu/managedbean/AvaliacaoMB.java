@@ -9,11 +9,13 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.model.SelectItem;
 import javax.inject.Named;
 
 import org.primefaces.model.DualListModel;
 
 import sae.infnet.edu.br.facade.QuestaoFacade;
+import sae.infnet.edu.modelo.Modulo;
 import sae.infnet.edu.modelo.Questao;
 
 @ManagedBean
@@ -23,6 +25,8 @@ public class AvaliacaoMB {
 	private List<Questao> selecionadas;
 	private String objetivo;
 	private boolean situacao;
+	private List<SelectItem> listaModulos = new ArrayList<SelectItem>();
+	private int idModulo;
 	@EJB
 	private QuestaoFacade questaoFacade;
 	private DualListModel<Questao> cores;
@@ -34,6 +38,7 @@ public class AvaliacaoMB {
 		questoes = questaoFacade.listarQuestoesAtivas();
 		selecionadas = new ArrayList<Questao>();
 		cores = new DualListModel<Questao>(questoes, selecionadas);
+		listaModulos.clear();
 	}
 	
 	public List<Questao> getQuestoes() {
@@ -85,5 +90,28 @@ public class AvaliacaoMB {
 
 	public void setCores(DualListModel<Questao> cores) {
 		this.cores = cores;
+	}
+
+	public List<SelectItem> getListaModulos() {
+		if (listaModulos.isEmpty()) {
+			List<Modulo> modulos = questaoFacade.listarModulos();
+			for (Modulo modulo : modulos) {
+				listaModulos.add(new SelectItem(String.valueOf(modulo
+						.getIdModulo()), String.valueOf(modulo.getNome())));
+			}
+		}
+		return listaModulos;
+	}
+
+	public void setListaModulos(List<SelectItem> listaModulos) {
+		this.listaModulos = listaModulos;
+	}
+
+	public int getIdModulo() {
+		return idModulo;
+	}
+
+	public void setIdModulo(int idModulo) {
+		this.idModulo = idModulo;
 	}
 }
