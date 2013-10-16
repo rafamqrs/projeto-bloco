@@ -52,11 +52,18 @@ public class AvaliacaoMB extends AbstractMB{
 	}
 	
 	public String cadastrar(){
-		avaliacao.setAtiva(situacao);
-		avaliacao.setObjetivo(objetivo);
-		avaliacao.setObservacao(observacao);
-		avaliacao.setDataHoraInicio(DataHelper.dateToCalendar(dataHoraInicio));
-		avaliacao.setDataHoraTermino(DataHelper.dateToCalendar(dataHoraFim));
+		try {
+			avaliacao.setAtiva(situacao);
+			avaliacao.setObjetivo(objetivo);
+			avaliacao.setObservacao(observacao);
+			avaliacao.setDataHoraInicio(DataHelper.dateToCalendar(dataHoraInicio));
+			avaliacao.setDataHoraTermino(DataHelper.dateToCalendar(dataHoraFim));
+			Modulo modulo = questaoFacade.listaModulo(idModulo);
+			avaliacao.setCurso(modulo);
+			avaliacao.setQuestoes(selecionadas);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "cadQuestao";
 	}
 	
