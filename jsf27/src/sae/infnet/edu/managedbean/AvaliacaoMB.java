@@ -14,24 +14,34 @@ import javax.inject.Named;
 
 import org.primefaces.model.DualListModel;
 
+import sae.infnet.edu.br.facade.AvaliacaoFacade;
 import sae.infnet.edu.br.facade.QuestaoFacade;
+import sae.infnet.edu.modelo.Avaliacao;
 import sae.infnet.edu.modelo.Modulo;
 import sae.infnet.edu.modelo.Questao;
+import sae.infnet.edu.util.DataHelper;
 
 @ManagedBean
 @RequestScoped
-public class AvaliacaoMB {
+public class AvaliacaoMB extends AbstractMB{
 	private List<Questao> questoes = new ArrayList<Questao>();
 	private List<Questao> selecionadas;
 	private String objetivo;
+	private Avaliacao avaliacao;
 	private boolean situacao;
 	private List<SelectItem> listaModulos = new ArrayList<SelectItem>();
 	private int idModulo;
+	private String observacao;
+	private Date dataHoraInicio;
+	private Date dataHoraFim;
 	@EJB
 	private QuestaoFacade questaoFacade;
+	@EJB
+	private AvaliacaoFacade avaliacaoFacade;
 	private DualListModel<Questao> cores;
 	
 	public AvaliacaoMB() {
+		avaliacao = new Avaliacao();
 	}
 
 	public void listarQuestoes(){
@@ -39,6 +49,15 @@ public class AvaliacaoMB {
 		selecionadas = new ArrayList<Questao>();
 		cores = new DualListModel<Questao>(questoes, selecionadas);
 		listaModulos.clear();
+	}
+	
+	public String cadastrar(){
+		avaliacao.setAtiva(situacao);
+		avaliacao.setObjetivo(objetivo);
+		avaliacao.setObservacao(observacao);
+		avaliacao.setDataHoraInicio(DataHelper.dateToCalendar(dataHoraInicio));
+		avaliacao.setDataHoraTermino(DataHelper.dateToCalendar(dataHoraFim));
+		return "cadQuestao";
 	}
 	
 	public List<Questao> getQuestoes() {
@@ -113,5 +132,29 @@ public class AvaliacaoMB {
 
 	public void setIdModulo(int idModulo) {
 		this.idModulo = idModulo;
+	}
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
+	public Date getDataHoraInicio() {
+		return dataHoraInicio;
+	}
+
+	public void setDataHoraInicio(Date dataHoraInicio) {
+		this.dataHoraInicio = dataHoraInicio;
+	}
+
+	public Date getDataHoraFim() {
+		return dataHoraFim;
+	}
+
+	public void setDataHoraFim(Date dataHoraFim) {
+		this.dataHoraFim = dataHoraFim;
 	}
 }

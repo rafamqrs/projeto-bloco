@@ -14,8 +14,16 @@
 				<div class="alert alert-info fade in">
 					<h:form styleClass="bs-example">
 						<div class="form-group">
+						<h3>
+							<strong>#{bundle.cadastroDeAvaliacoes}</strong>
+						</h3>
+						
 						<h:outputText value="#{bundle.objetivo}" styleClass="labelPequeno"/>
 						<h:inputText value="#{avaliacaoMB.objetivo}" />
+						<br/>
+
+						<h:outputText value="#{bundle.observacao}" styleClass="labelPequeno"/>
+						<h:inputText value="#{avaliacaoMB.observacao}" />
 						<br/>
 						
 						<h:outputText value="#{bundle.situacao}" styleClass="labelPequeno"/>
@@ -24,6 +32,18 @@
 							<f:selectItem itemLabel="#{bundle.inativo}" itemValue="false" />
 						</p:selectOneRadio>
     					<br/>
+    					<h:outputText value="#{bundle.dataHoraInicio}" styleClass="labelPequeno"/>
+    					<p:calendar id="dtHoraInicio" value="#{avaliacaoMB.dataHoraInicio}"
+    								showOn="button" showButtonPanel="true"
+    								pattern="MM/dd/yyyy HH:mm"/>
+						<br/>    					
+
+    					<h:outputText value="#{bundle.dataHoraTermino}" styleClass="labelPequeno"/>
+    					<p:calendar id="dtHoraFim"  value="#{avaliacaoMB.dataHoraFim}" 
+    								showOn="button"	showButtonPanel="true" 
+    								pattern="MM/dd/yyyy HH:mm"/>
+						<br/>    					
+
 	   					<h:outputText value="#{bundle.curso}" styleClass="labelPequeno"/><br/>
 						<p:selectOneMenu value="#{avaliacaoMB.idModulo}">
 							<f:selectItem itemLabel="--Selecione um modulo--" itemValue="-1" />
@@ -37,6 +57,9 @@
 					        <f:facet name="sourceCaption">Questoes</f:facet>
 					        <f:facet name="targetCaption">Selecionadas</f:facet>
 					    </p:pickList>
+					    <h:commandButton action="#{avaliacaoMB.cadastrar()}" 
+					    				 value="#{bundle.cadastraAvaliacao}"
+					    				 styleClass="btn btn-large btn-primary"/>
 						</div>
 					</h:form>
 				</div>
