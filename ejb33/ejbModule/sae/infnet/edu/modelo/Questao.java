@@ -60,5 +60,46 @@ public class Questao {
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (ativo ? 1231 : 1237);
+		result = prime * result + ((curso == null) ? 0 : curso.hashCode());
+		result = prime * result
+				+ ((descricao == null) ? 0 : descricao.hashCode());
+		result = prime * result
+				+ ((idQuestao == null) ? 0 : idQuestao.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Questao other = (Questao) obj;
+		if (ativo != other.ativo)
+			return false;
+		if (curso == null) {
+			if (other.curso != null)
+				return false;
+		} else if (!curso.equals(other.curso))
+			return false;
+		if (descricao == null) {
+			if (other.descricao != null)
+				return false;
+		} else if (!descricao.equals(other.descricao))
+			return false;
+		if (idQuestao == null) {
+			if (other.idQuestao != null)
+				return false;
+		} else if (!idQuestao.equals(other.idQuestao))
+			return false;
+		return true;
+	}
 }

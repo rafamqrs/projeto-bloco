@@ -12,7 +12,7 @@
 	<h:form>
 		<p:megaMenu autoDisplay="false"> 
 			<p:submenu label="#{bundle.paginaInicial}" icon="ui-icon-home"/>
-		 	<p:submenu label="Administrador" icon="icon-user">
+		 	<p:submenu label="Administrador" icon="icon-user" rendered="#{loginMB.admin}">
 			 	<p:column>
 			 		<p:submenu label="#{bundle.questoes}">
 					    <p:menuitem value="#{bundle.manterQuestoes}" action="#{menuMB.cadQuestao()}" icon="ui-icon-comment" />

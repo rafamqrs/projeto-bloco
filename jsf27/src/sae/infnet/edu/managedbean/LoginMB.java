@@ -84,9 +84,9 @@ public class LoginMB extends AbstractMB {
 
 	public boolean isAdmin() {
 		if(request.isUserInRole("ADMIN")){
-			return false;
+			return true;
 		}
-		return true;
+		return false;
 	}
 
 	public void setAdmin(boolean isAdmin) {

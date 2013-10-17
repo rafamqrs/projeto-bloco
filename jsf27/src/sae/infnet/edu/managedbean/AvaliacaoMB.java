@@ -6,12 +6,15 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.inject.Named;
 
+import org.primefaces.event.TransferEvent;
 import org.primefaces.model.DualListModel;
 
 import sae.infnet.edu.br.facade.AvaliacaoFacade;
@@ -128,7 +131,19 @@ public class AvaliacaoMB extends AbstractMB{
 		}
 		return listaModulos;
 	}
-
+	
+    public void onTransfer(TransferEvent event) {  
+        StringBuilder builder = new StringBuilder();  
+        for(Object item : event.getItems()) {  
+        	System.out.println(item.getClass().getName());
+        }  
+        FacesMessage msg = new FacesMessage();  
+        msg.setSeverity(FacesMessage.SEVERITY_INFO);  
+        msg.setSummary("Items Transferred");  
+        msg.setDetail(builder.toString());  
+          
+        FacesContext.getCurrentInstance().addMessage(null, msg);  
+    } 
 	public void setListaModulos(List<SelectItem> listaModulos) {
 		this.listaModulos = listaModulos;
 	}
