@@ -52,6 +52,7 @@ public class LoginMB extends AbstractMB {
 
 		} catch (ServletException e) {
 			System.out.println(e.getMessage());
+			logout();
 			return "failure";
 		}
 	}

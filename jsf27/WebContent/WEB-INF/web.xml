@@ -49,6 +49,39 @@
 	<param-name>primefaces.THEME</param-name>
 	<param-value>bootstrap</param-value>
   </context-param>
+  	<!-- Controle de Erros -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/protected/erro/paginaDeErro.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>301</error-code>
+		<location>/protected/erro/paginaDeErro.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>302</error-code>
+		<location>/protected/erro/paginaDeErro.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/protected/erro/paginaDeErro.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>408</error-code>
+		<location>/protected/erro/paginaDeErro.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/protected/erro/acessoNegado.xhtml</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.NullPointerException</exception-type>
+		<location>/protected/erro/paginaDeErro.xhtml</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/protected/erro/paginaDeErro.xhtml</location>
+	</error-page>
   <!-- Configuração de timeout servidor de aplicação -->
   <session-config> 
       <session-timeout>30</session-timeout>   <!-- 30 minutes --> 
