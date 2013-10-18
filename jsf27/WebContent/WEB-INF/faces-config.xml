@@ -52,7 +52,22 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>respAvaliacao</from-outcome>
+			<to-view-id>/protected/user/avaliacao/respAvaliacao.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>cadModulo</from-outcome>
+			<to-view-id>/protected/admin/modulo/cadModulo.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>/public/paginaLogin.xhtml</from-view-id>
 		<navigation-case>

@@ -15,6 +15,10 @@ public class ModuloDAO {
 	@PersistenceContext
 	private EntityManager em;
 
+	public void cadastar(Modulo modulo){
+		em.persist(modulo);
+	}
+	
 	public List<Modulo> listarModulos(){
 		TypedQuery<Modulo> createQuery = em.createQuery("select m from Modulo m", Modulo.class);
 		return createQuery.getResultList();

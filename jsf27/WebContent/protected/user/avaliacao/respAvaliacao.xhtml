@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Formulário de Avaliação</title>
+</h:head>
+	<ui:composition template="/protected/templates/master.xhtml">
+		<ui:define name="divMain">
+			<div class="container master-container">
+				<div class="alert alert-info fade in">
+					<h:form styleClass="bs-example">
+						<p:growl id="msg" escape="false" />  
+						<div class="form-group">
+						<h3>
+							<strong>#{bundle.formularioDeAvaliacoes}</strong>
+						</h3>						
+						
+						<h:dataTable var="pergunta" value="#{questaoMB.listaQuestoes}" border="0">
+							<h:column>
+								#{pergunta.descricao}
+								<h:column>
+									<br/>
+									<p:selectOneRadio id="ativo" value="">
+										<f:selectItem itemLabel=" concordo totalmente " itemValue="concordo totalmente" /><br/>
+										<f:selectItem itemLabel=" concordo " itemValue="concordo" />
+										<f:selectItem itemLabel=" não concordo nem discordo " itemValue="não concordo nem discordo" />
+										<f:selectItem itemLabel=" discordo " itemValue=" discordo " />
+										<f:selectItem itemLabel=" discordo totalmente " itemValue="discordo totalmente" />
+										<f:selectItem itemLabel=" não sei avaliar " itemValue="não sei avaliar" />
+									</p:selectOneRadio>
+								</h:column>
+								<br/><br/>
+							</h:column>
+						</h:dataTable>
+						
+					    <h:commandButton action="#{avaliacaoMB.responder()}" 
+					    				 value="#{bundle.responderAvaliacao}"
+					    				 styleClass="btn btn-large btn-primary"/>
+						</div>
+					</h:form>
+				</div>
+			</div>			
+		</ui:define>
+	</ui:composition>
+</html>

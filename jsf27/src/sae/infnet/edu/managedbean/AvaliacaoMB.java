@@ -63,7 +63,10 @@ public class AvaliacaoMB extends AbstractMB{
 			avaliacao.setDataHoraTermino(DataHelper.dateToCalendar(dataHoraFim));
 			Modulo modulo = questaoFacade.listaModulo(idModulo);
 			avaliacao.setCurso(modulo);
+			selecionadas = cores.getTarget();
 			avaliacao.setQuestoes(selecionadas);
+			avaliacaoFacade.cadastrar(avaliacao);
+			System.out.println("FUNCIONOU!!!!!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

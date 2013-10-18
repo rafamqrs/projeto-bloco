@@ -16,8 +16,16 @@ public class MenuMB {
 		return "cadQuestao";
 	}
 
+	public String cadModulo(){
+		return "cadModulo";
+	}
+	
 	public String cadAvaliacao(){
 		return "cadAvaliacao";
+	}
+	
+	public String respAvaliacao(){
+		return "respAvaliacao";
 	}
 	
 	public String paginaInicial(){

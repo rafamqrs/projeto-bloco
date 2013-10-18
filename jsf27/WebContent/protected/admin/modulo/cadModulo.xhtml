@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<title>Cadastro de Modulos</title>
+	</h:head> 
+	<ui:composition template="/protected/templates/master.xhtml">
+			<ui:define name="divMain">
+				<div class="container master-container">
+					   <h:form styleClass="bs-example">
+								<div class="form-group">
+									<h3>
+										<strong>#{bundle.cadastroModulo}</strong>
+									</h3>
+									<h:outputText value="#{bundle.modulo}" styleClass="labelPequeno"/>
+									<br/>
+									<p:inputText value="#{moduloMB.modulo.nome}" styleClass="form-control" />
+									<br/>
+									<h:commandButton action="#{moduloMB.cadastrarModulo()}" 
+								                     value="#{bundle.cadastraModulo}"  type="submit"
+									                 styleClass="btn btn-large btn-primary" />
+								</div>
+						</h:form>
+						
+						<h:form id="listModulos">
+							<p:dataTable id="dataTable" var="modulos" value="#{moduloMB.listaModulos}" 
+								         paginator="true" rows="5" 
+								         paginatorTemplate=
+      "{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+								         rowsPerPageTemplate="5,10,20"
+								         styleClass="table table-striped table-bordered">
+								<f:facet name="header">
+									#{bundle.listaModulos}
+	                 			</f:facet>
+								
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="idModulo" />
+									</f:facet>
+	                 				<h:outputText value="#{modulos.idModulo}" />
+	                 			</p:column>
+	
+								<p:column>
+									<f:facet name="header">
+										<h:outputText value="Descrição do Módulo" />
+									</f:facet>
+									<h:outputText value="#{modulos.nome}" />
+	                 			</p:column>
+						    </p:dataTable>
+					    </h:form>
+				</div>
+			</ui:define>
+	</ui:composition>
+</html>

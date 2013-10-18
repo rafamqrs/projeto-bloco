@@ -12,53 +12,64 @@
 		<ui:define name="divMain">
 			<div class="container master-container">
 				<div class="alert alert-info fade in">
-					<h:form styleClass="bs-example">
+				<h:form styleClass="bs-example">
 						<p:growl id="msg" escape="false" />  
 						<div class="form-group">
-						<h3>
-							<strong>#{bundle.cadastroDeAvaliacoes}</strong>
-						</h3>
-						
+				<table>
+						<tr>
+						    <td colspan="2">
+								<h3>
+									<strong>#{bundle.cadastroDeAvaliacoes}</strong>
+								</h3>
+						    </td>
+						</tr>
+		 			  <tr>
+					    <td colspan="2"><hr /></td>
+					  </tr>
+					  <tr>
+					  
 						<h:outputText value="#{bundle.objetivo}" styleClass="labelPequeno"/>
 						<h:inputText label="#{bundle.objetivo}" value="#{avaliacaoMB.objetivo}" required="true"/>
-						<br/>
-
+					</tr>
 						<h:outputText value="#{bundle.observacao}" styleClass="labelPequeno"/>
 						<h:inputText label="#{bundle.observacao}" value="#{avaliacaoMB.observacao}" required="true"/>
-						<br/>
 						
 						<h:outputText value="#{bundle.situacao}" styleClass="labelPequeno"/>
 						<p:selectOneRadio label="#{bundle.situacao}" id="ativo" value="#{avaliacaoMB.situacao}" required="true">
 							<f:selectItem itemLabel="#{bundle.ativo}" itemValue="true" />
 							<f:selectItem itemLabel="#{bundle.inativo}" itemValue="false" />
 						</p:selectOneRadio>
-    					<br/>
     					<h:outputText value="#{bundle.dataHoraInicio}" styleClass="labelPequeno"/>
     					<p:calendar label="#{bundle.dataHoraInicio}" id="dtHoraInicio" value="#{avaliacaoMB.dataHoraInicio}"
     								showOn="button" showButtonPanel="true"
     								pattern="MM/dd/yyyy HH:mm" required="true"/>
-						<br/>    					
 
     					<h:outputText value="#{bundle.dataHoraTermino}" styleClass="labelPequeno"/>
     					<p:calendar label="#{bundle.dataHoraTermino}" id="dtHoraFim"  value="#{avaliacaoMB.dataHoraFim}" 
     								showOn="button"	showButtonPanel="true" 
     								pattern="MM/dd/yyyy HH:mm" required="true"/>
-						<br/>    					
 
 	   					<h:outputText value="#{bundle.curso}" styleClass="labelPequeno"/><br/>
-    					<br/><br/>
-  					    <p:pickList value="#{avaliacaoMB.cores}" var="cor" iconOnly="true" itemLabel="#{cor.descricao}" 
+	   					<p:selectOneMenu value="#{avaliacaoMB.idModulo}">
+							<f:selectItem itemLabel="--Selecione um modulo--" itemValue="-1" />
+							<f:selectItems value="#{avaliacaoMB.listaModulos}" />
+						</p:selectOneMenu>
+   					    <p:pickList value="#{avaliacaoMB.cores}" var="cor" iconOnly="true" itemLabel="#{cor.descricao}" 
 					    			itemValue="#{cor}" showSourceControls="true" showTargetControls="true" showCheckbox="true"  
                    					showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains"
                    					style=".ui-picklist .ui-picklist-list { height: 300px; margin: 0; overflow: auto; padding: 0; }">
 					        <f:facet name="sourceCaption">Questoes</f:facet>
 					        <f:facet name="targetCaption">Selecionadas</f:facet>
 					    </p:pickList>
+
 					    <h:commandButton action="#{avaliacaoMB.cadastrar()}" 
 					    				 value="#{bundle.cadastraAvaliacao}"
 					    				 styleClass="btn btn-large btn-primary"/>
+						</table>
 						</div>
+
 					</h:form>
+				
 				</div>
 			</div>			
 		</ui:define>

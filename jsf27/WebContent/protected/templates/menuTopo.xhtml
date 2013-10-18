@@ -20,12 +20,15 @@
 			 		<p:submenu label="#{bundle.avaliacoes}">
 					    <p:menuitem value="#{bundle.manterAvaliacoes}" action="#{menuMB.cadAvaliacao()}" icon="ui-icon-comment"/>
 			 		</p:submenu>
+			 		<p:submenu label="Módulos">
+					    <p:menuitem value="#{bundle.cadastroModulo}" action="#{menuMB.cadModulo()}" icon="ui-icon-comment"/>
+			 		</p:submenu>
 			 	</p:column>
 		 	</p:submenu>
 		 	<p:submenu label="Aluno" icon="ui-icon-person">
 			 	<p:column>
 			 		<p:submenu label="Responder Avaliação">
-					    <p:menuitem value="Avaliação" action="#" icon="ui-icon-comment" />
+					   <p:menuitem value="Avaliação" action="#{menuMB.respAvaliacao()}" icon="ui-icon-comment"/>
 			 		</p:submenu>
 			 	</p:column>
 		 	</p:submenu>
